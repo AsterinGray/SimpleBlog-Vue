@@ -13,23 +13,20 @@
 </template>
 
 <script>
-import axios from "axios";
-
+import { mapState } from "vuex";
 import PostCard from "../components/PostCard.vue";
 
 export default {
   components: {
     PostCard,
   },
-  data() {
-    return {
-      posts: null,
-    };
+  computed: {
+    ...mapState({
+      posts: "posts",
+    }),
   },
   mounted() {
-    axios
-      .get("https://jsonplaceholder.typicode.com/posts")
-      .then((res) => (this.posts = res.data));
+    this.$store.dispatch("getAllPost");
   },
 };
 </script>

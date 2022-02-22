@@ -7,7 +7,7 @@
   <div>
     <h2 class="title">Comments</h2>
     <div class="container">
-      <comment-card
+      <CommentCard
         v-for="comment in comments"
         :key="comment.id"
         :body="comment.body"
@@ -21,10 +21,10 @@
 <script>
 import axios from "axios";
 import CommentCard from "../components/CommentCard.vue";
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {
-      post: {},
       comments: [],
       author: {},
     };
@@ -32,13 +32,16 @@ export default {
   components: {
     CommentCard,
   },
-  mounted() {
-    axios
-      .get(
-        `https://jsonplaceholder.typicode.com/posts/${this.$route.params.id}`
-      )
-      .then((res) => (this.post = res.data));
+  computed: {
+    ...mapGetters({
+      getPost: "getPost",
+    }),
 
+    post() {
+      return this.getPost(this.$route.params.id);
+    },
+  },
+  mounted() {
     axios
       .get(
         `https://jsonplaceholder.typicode.com/posts/${this.$route.params.id}/comments`

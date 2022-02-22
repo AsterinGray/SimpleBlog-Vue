@@ -1,9 +1,11 @@
 <template>
-  <router-link class="card" :to="{ path: `/post/${id}` }">
-    <p class="title">{{ title }}</p>
-    <p class="detail">{{ body }}</p>
-    <span class="info">created by user {{ userId }}</span>
-  </router-link>
+  <div @click="setPost">
+    <router-link class="card" :to="{ path: `/post/${id}` }">
+      <p class="title">{{ title }}</p>
+      <p class="detail">{{ body }}</p>
+      <span class="info">created by user {{ userId }}</span>
+    </router-link>
+  </div>
 </template>
 
 <script>
