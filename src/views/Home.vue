@@ -1,14 +1,7 @@
 <template>
   <h1>Posts</h1>
   <div class="content">
-    <post-card
-      v-for="(post, index) in posts"
-      :key="index"
-      :id="post.id"
-      :userId="post.id"
-      :title="post.title"
-      :body="post.body"
-    />
+    <PostCard v-for="(post, index) in posts" :key="index" v-bind="post" />
   </div>
 </template>
 

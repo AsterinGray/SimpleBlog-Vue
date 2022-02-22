@@ -10,9 +10,7 @@
       <CommentCard
         v-for="comment in comments"
         :key="comment.id"
-        :body="comment.body"
-        :email="comment.email"
-        :name="comment.name"
+        v-bind="comment"
       />
     </div>
   </div>
